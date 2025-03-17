@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Proposta DataFormula</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0D0D1A;
+            color: #FFFFFF;
+            line-height: 1.6;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #1A1A2E;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 200px;
+        }
+        h1, h2, h3 {
+            color: #00D4FF;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .highlight {
+            color: #00D4FF;
+            font-weight: bold;
+        }
+        .cta-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: #FFD700;
+            color: #0D0D1A;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+            animation: pulse-button 1.5s infinite;
+        }
+        .cta-button:hover {
+            background: #FFC107;
+        }
+        @keyframes pulse-button {
+            0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.9); }
+            100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+        }
+        .timer {
+            font-size: 32px;
+            font-weight: bold;
+            color: #FF4747;
+            margin-top: 15px;
+            text-align: center;
+            animation: pulse-timer 1s infinite;
+        }
+        @keyframes pulse-timer {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .pricing-table {
+            background: #12122C;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            transition: all 0.3s ease-in-out;
+        }
+        .pricing-table ul {
+            list-style: none;
+            padding: 0;
+        }
+        .pricing-table li {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="img/logo.svg" alt="Logo DataFormula" class="logo">
+        
+        <h1>Proposta Comercial Exclusiva</h1>
+        <p>Prezado <span class="highlight">Bruno Peruzetto</span>,</p>
+        <p>Agradeço pela conversa e a oportunidade de apresentar esta proposta personalizada.</p>
+        
+        <h2>Visão Geral</h2>
+        <p>Somos uma das poucas empresas especializadas no sistema <span class="highlight">Fórmula Certa</span>, permitindo entregarmos soluções personalizadas que maximizam seus resultados com análise de dados, treinamento e suporte contínuo.</p>
+        
+        <h2>Oferta Especial</h2>
+        <div class="pricing-table">
+            <ul>
+                <li>💰 <strong>Primeiros 3 meses:</strong> R$ 2.500/mês por 60 horas mensais (<span class="highlight">R$ 41,67/hora</span>)</li>
+                <li>💰 <strong>Próximos 9 meses:</strong> R$ 2.500/mês por 45 horas mensais (<span class="highlight">R$ 55,56/hora</span>)</li>
+                <li>✅ <strong>Preço padrão:</strong> R$ 65/hora</li>
+                <li>✅ <strong>Preço para projetos fechados:</strong> R$ 90/hora</li>
+                <li>🤑 <strong>Economia total:</strong> até 53% de desconto no seu investimento!</li>
+            </ul>
+        </div>
+        
+        <h2>Oferta expira em:</h2>
+        <div class="timer" id="countdown">00:00:00</div>
+        
+        <h2>Próximos Passos</h2>
+        <p>Fico à disposição para esclarecer qualquer dúvida ou ajustar detalhes. Se desejar formalizar a parceria, clique no botão abaixo para prosseguir:</p>
+        <a href="https://wa.me/5581988292245?text=Quero%20aceitar%20essa%20proposta!" class="cta-button">
+            Aceitar Proposta
+        </a>
+        
+        <p>Atenciosamente,</p>
+        <p><strong>Felype Gabriel</strong><br>FGS Consultoria | DataFormula</p>
+    </div>
+
+    <script>
+        function startCountdown() {
+            const deadline = new Date("2025-03-18T23:59:59").getTime();
+            const timerElement = document.getElementById("countdown");
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const timeLeft = deadline - now;
+
+                if (timeLeft > 0) {
+                    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+                    const seconds = Math.floor((timeLeft / 1000) % 60);
+                    timerElement.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+                } else {
+                    timerElement.textContent = "Oferta Expirada";
+                    clearInterval(interval);
+                }
+            }
+
+            updateTimer();
+            const interval = setInterval(updateTimer, 1000);
+        }
+
+        startCountdown();
+    </script>
+</body>
+</html>
